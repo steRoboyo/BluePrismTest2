@@ -1,7 +1,7 @@
 ﻿<process name="Excel_WriteToExcelWrapText" version="1.0" bpversion="6.10.1.35171" narrative="" byrefcollection="true" preferredid="f26b42f3-7d37-485a-be82-0602399df2e2">
   <view>
     <camerax>0</camerax>
-    <cameray>486</cameray>
+    <cameray>675</cameray>
     <zoom version="2">1.25</zoom>
   </view>
   <preconditions />
@@ -11,7 +11,7 @@
     <onsuccess>8ec5ba79-3677-46b9-9698-f323da4bfe5f</onsuccess>
   </stage>
   <stage stageid="42d304bf-95fd-4761-b87f-871b2e3dfa6e" name="End" type="End">
-    <display x="15" y="660" />
+    <display x="15" y="705" />
   </stage>
   <stage stageid="5da438ce-c314-4125-94dc-56c7f3134b8d" name="Stage1" type="ProcessInfo">
     <display x="-495" y="-165" w="150" h="90" />
@@ -302,12 +302,31 @@
   <stage stageid="a4623ebe-968c-4113-bff4-d7f547343e95" name="Set test" type="Calculation">
     <loginhibit onsuccess="true" />
     <display x="15" y="600" />
-    <onsuccess>42d304bf-95fd-4761-b87f-871b2e3dfa6e</onsuccess>
+    <onsuccess>05394b64-a987-4a3a-ad71-30905e030687</onsuccess>
     <calculation expression="&quot;test&quot;" stage="test" />
   </stage>
   <stage stageid="ab633541-c2da-43ed-b734-0d8ab4f13a05" name="test" type="Data">
     <display x="75" y="600" />
     <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="05394b64-a987-4a3a-ad71-30905e030687" name="Collections::Count Rows" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="15" y="660" />
+    <inputs>
+      <input type="text" name="Collection Name" friendlyname="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Coll1&quot;" />
+    </inputs>
+    <outputs>
+      <output type="number" name="Count" friendlyname="Count" narrative="The number of rows counted in the collection" stage="rowsColl1" />
+    </outputs>
+    <onsuccess>42d304bf-95fd-4761-b87f-871b2e3dfa6e</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Count Rows" />
+  </stage>
+  <stage stageid="60f5d214-2eef-43e7-9a8c-f5fb7b2c9a10" name="rowsColl1" type="Data">
+    <display x="-75" y="660" />
+    <datatype>number</datatype>
     <initialvalue />
     <private />
     <alwaysinit />
