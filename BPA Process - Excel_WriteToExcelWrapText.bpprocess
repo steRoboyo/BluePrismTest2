@@ -1,7 +1,7 @@
 ﻿<process name="Excel_WriteToExcelWrapText" version="1.0" bpversion="6.10.1.35171" narrative="" byrefcollection="true" preferredid="f26b42f3-7d37-485a-be82-0602399df2e2">
   <view>
     <camerax>0</camerax>
-    <cameray>486</cameray>
+    <cameray>570</cameray>
     <zoom version="2">1.25</zoom>
   </view>
   <preconditions />
@@ -11,7 +11,7 @@
     <onsuccess>8ec5ba79-3677-46b9-9698-f323da4bfe5f</onsuccess>
   </stage>
   <stage stageid="42d304bf-95fd-4761-b87f-871b2e3dfa6e" name="End" type="End">
-    <display x="15" y="660" />
+    <display x="15" y="705" />
   </stage>
   <stage stageid="5da438ce-c314-4125-94dc-56c7f3134b8d" name="Stage1" type="ProcessInfo">
     <display x="-495" y="-165" w="150" h="90" />
@@ -302,7 +302,7 @@
   <stage stageid="a4623ebe-968c-4113-bff4-d7f547343e95" name="Set test" type="Calculation">
     <loginhibit onsuccess="true" />
     <display x="15" y="600" />
-    <onsuccess>42d304bf-95fd-4761-b87f-871b2e3dfa6e</onsuccess>
+    <onsuccess>eb8d1eb0-2dea-4f74-b573-500a40375bc7</onsuccess>
     <calculation expression="&quot;test&quot;" stage="test" />
   </stage>
   <stage stageid="ab633541-c2da-43ed-b734-0d8ab4f13a05" name="test" type="Data">
@@ -311,5 +311,31 @@
     <initialvalue />
     <private />
     <alwaysinit />
+  </stage>
+  <stage stageid="eb8d1eb0-2dea-4f74-b573-500a40375bc7" name="1&gt;0" type="Decision">
+    <display x="15" y="645" />
+    <decision expression="1&gt;0" />
+    <ontrue>4a79cba3-bad7-49a8-b54a-3e681b16dc4d</ontrue>
+    <onfalse>fcbe5cb5-6396-4c02-80b8-deab568c5f5f</onfalse>
+  </stage>
+  <stage stageid="4a79cba3-bad7-49a8-b54a-3e681b16dc4d" name="Anchor1" type="Anchor">
+    <loginhibit onsuccess="true" />
+    <display x="-60" y="645" w="10" h="10" />
+    <onsuccess>a32d7c7a-365d-4af5-8d1b-f4cb92eefbc7</onsuccess>
+  </stage>
+  <stage stageid="fcbe5cb5-6396-4c02-80b8-deab568c5f5f" name="Anchor2" type="Anchor">
+    <loginhibit onsuccess="true" />
+    <display x="75" y="645" w="10" h="10" />
+    <onsuccess>db2edfe2-f92a-4bfd-91f4-b20dcf810fdb</onsuccess>
+  </stage>
+  <stage stageid="db2edfe2-f92a-4bfd-91f4-b20dcf810fdb" name="Anchor3" type="Anchor">
+    <loginhibit onsuccess="true" />
+    <display x="75" y="705" w="10" h="10" />
+    <onsuccess>42d304bf-95fd-4761-b87f-871b2e3dfa6e</onsuccess>
+  </stage>
+  <stage stageid="a32d7c7a-365d-4af5-8d1b-f4cb92eefbc7" name="Anchor4" type="Anchor">
+    <loginhibit onsuccess="true" />
+    <display x="-60" y="705" w="10" h="10" />
+    <onsuccess>42d304bf-95fd-4761-b87f-871b2e3dfa6e</onsuccess>
   </stage>
 </process>
