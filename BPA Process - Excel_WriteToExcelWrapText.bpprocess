@@ -1,0 +1,315 @@
+﻿<process name="Excel_WriteToExcelWrapText" version="1.0" bpversion="6.10.1.35171" narrative="" byrefcollection="true" preferredid="f26b42f3-7d37-485a-be82-0602399df2e2">
+  <view>
+    <camerax>0</camerax>
+    <cameray>486</cameray>
+    <zoom version="2">1.25</zoom>
+  </view>
+  <preconditions />
+  <endpoint narrative="" />
+  <stage stageid="6095bc71-f37d-46fe-bb4d-4c01d33b804c" name="Start" type="Start">
+    <display x="15" y="-195" />
+    <onsuccess>8ec5ba79-3677-46b9-9698-f323da4bfe5f</onsuccess>
+  </stage>
+  <stage stageid="42d304bf-95fd-4761-b87f-871b2e3dfa6e" name="End" type="End">
+    <display x="15" y="660" />
+  </stage>
+  <stage stageid="5da438ce-c314-4125-94dc-56c7f3134b8d" name="Stage1" type="ProcessInfo">
+    <display x="-495" y="-165" w="150" h="90" />
+  </stage>
+  <stage stageid="0f741d52-ffe1-4b3c-9a87-747a21996d6d" name="handle" type="Data">
+    <display x="-165" y="90" w="120" h="30" />
+    <datatype>number</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="0eca7f24-bb21-4452-ad6a-6577b0aca704" name="Workbook Name" type="Data">
+    <display x="-165" y="135" w="120" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="a464c0b1-5383-4204-82af-8341c102dd07" name="last row" type="Data">
+    <display x="405" y="345" w="90" h="30" />
+    <datatype>number</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="cfb68186-0552-4245-b7c7-0275740018b4" name="str_last row" type="Data">
+    <display x="405" y="390" w="90" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="1f535e5c-d153-4b4c-9d75-9f1ccbc8c0be" name="Close Instance" type="Action">
+    <display x="15" y="525" w="90" h="30" />
+    <font family="Tahoma" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="number" name="handle" narrative="The integer handle identifying the instance to be closed. Zero indicates the currently active instance." expr="[handle]" />
+      <input type="flag" name="Save Changes" narrative="True to save the changes to the open workbooks on the instance, False to discard any changes. Default is False." expr="False" />
+    </inputs>
+    <onsuccess>a4623ebe-968c-4113-bff4-d7f547343e95</onsuccess>
+    <resource object="MS Excel VBO" action="Close Instance" />
+  </stage>
+  <stage stageid="fcbd657b-9ff7-4802-a9c8-a522241de437" name="Set Coll1.Field1" type="Calculation">
+    <loginhibit onsuccess="true" />
+    <display x="15" y="-45" />
+    <onsuccess>f5150b26-6101-4f28-a3a4-746c3574ef44</onsuccess>
+    <calculation expression="&quot;Check Offer successfull:;Supplier names unique; 15. Send to Approver:Business Exception:BRE:Total value of PO is NOT within threshold from excel file 'Checks to perform' ,Contains NOT OK Keywords for Check Address. Output comment is: #. FAK Self Assessment:&quot;&amp;NewLine()&amp;&#xA;NewLine()&amp;&#xA;&quot;Erforderlich: Ja&quot;&amp;NewLine()&amp;&#xA;&quot;Vorhanden: Nein and keyword 1 is: Vorhanden: Nein-NOT SENT TO APPROVER&quot;" stage="Coll1.Field1" />
+  </stage>
+  <stage stageid="57d8f19d-988f-4fb9-8d06-b6834bedcb60" name="Create Workbook" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="15" y="135" w="90" h="30" />
+    <inputs>
+      <input type="number" name="handle" narrative="The integer handle identifying the instance on which the workbook should be created. The default of zero indicates the currently active instance." expr="[handle]" />
+    </inputs>
+    <outputs>
+      <output type="text" name="Workbook Name" narrative="The name of the workbook that Excel has created - this can be changed using the &quot;Save Workbook As&quot; action" stage="Workbook Name" />
+    </outputs>
+    <onsuccess>5aff0803-c3c6-49c6-be5a-a563a4026fae</onsuccess>
+    <resource object="MS Excel VBO" action="Create Workbook" />
+  </stage>
+  <stage stageid="2579d77f-e9ea-4500-bb57-367afb80b593" name="Create Instance" type="Action">
+    <display x="15" y="90" w="90" h="30" />
+    <font family="Tahoma" size="10" style="Regular" color="000000" />
+    <inputs>
+      <input type="flag" name="Enable Events" narrative="Flag to indicate that events should be enabled / disabled on the attached instance - defaulted to True" expr="" />
+    </inputs>
+    <outputs>
+      <output type="number" name="handle" narrative="An integer which can be used to identify the created instance in subsequent actions" stage="handle" />
+    </outputs>
+    <onsuccess>57d8f19d-988f-4fb9-8d06-b6834bedcb60</onsuccess>
+    <breakpoint type="0">
+      <condition>
+      </condition>
+    </breakpoint>
+    <resource object="MS Excel VBO" action="Create Instance" />
+  </stage>
+  <stage stageid="74673df2-cff5-4275-aa19-97a33f05a4e1" name="Write Collection Report" type="Action">
+    <display x="15" y="255" w="90" h="30" />
+    <inputs>
+      <input type="number" name="handle" narrative="The integer handle identifying the instance on which the specified collection should be written. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Workbook Name" narrative="The name of the workbook within which the data should be written. The default empty value indicates the current workbook within the specified instance." expr="[Workbook Name]" />
+      <input type="collection" name="Collection" narrative="The collection containing the data which should be written to the worksheet." expr="[Coll1]" />
+      <input type="text" name="Worksheet Name" narrative="The name of the worksheet on which the given data should be written. The default empty value indicates the current sheet within the specified workbook." expr="&quot;Tabelle1&quot;" />
+      <input type="text" name="Cell Reference" narrative="The reference at which the collection should be written." expr="&quot;A1&quot;" />
+      <input type="flag" name="Include Column Names" narrative="True to indicate that the column names from the collection should be written out as the first row; False to ignore the column names and just write out the data." expr="" />
+    </inputs>
+    <onsuccess>e88a4a8b-fcae-4004-a0ab-30f8ba91396f</onsuccess>
+    <resource object="MS Excel VBO" action="Write Collection" />
+  </stage>
+  <stage stageid="e88a4a8b-fcae-4004-a0ab-30f8ba91396f" name="Wrap Text as False" type="Action">
+    <display x="15" y="300" w="90" h="30" />
+    <inputs>
+      <input type="number" name="Handle" friendlyname="Handle" expr="[handle]" />
+      <input type="text" name="Workbook" friendlyname="Workbook" expr="[Workbook Name]" />
+    </inputs>
+    <onsuccess>fd87adf1-c5a2-4868-8f39-b420251d887a</onsuccess>
+    <resource object="MS Excel VBO" action="Wrap Text as False" />
+  </stage>
+  <stage stageid="534cab04-9a1f-49b1-8a57-c62cf8dc229e" name="save current Workbook" type="Action">
+    <display x="15" y="480" w="90" h="30" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance for which the current workbook which should be saved. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="File name" friendlyname="File name" narrative="The full path and file name to which the current workbook should be saved." expr="&quot;C:\Users\&quot;&amp;[user]&amp;&quot;\Desktop\Test_WriteDataWrapText.xlsx&quot;" />
+    </inputs>
+    <outputs>
+      <output type="text" name="New Workbook Name" friendlyname="New Workbook Name" narrative="The new workbook name which Excel will use to identify the workbook." stage="" />
+    </outputs>
+    <onsuccess>1f535e5c-d153-4b4c-9d75-9f1ccbc8c0be</onsuccess>
+    <resource object="MS Excel VBO" action="Save Current Workbook As" />
+  </stage>
+  <stage stageid="238bb884-7f46-4846-87bf-6949ced737c8" name="Coll1" type="Collection">
+    <display x="-225" y="-30" w="120" h="60" />
+    <datatype>collection</datatype>
+    <private />
+    <alwaysinit />
+    <collectioninfo>
+      <field name="Field1" type="text" />
+    </collectioninfo>
+  </stage>
+  <stage stageid="5aff0803-c3c6-49c6-be5a-a563a4026fae" name="Show" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="15" y="180" w="90" h="30" />
+    <inputs>
+      <input type="number" name="handle" narrative="The integer handle identifying the instance which should have its window displayed. The default of zero indicates the currently active instance." expr="[handle]" />
+    </inputs>
+    <onsuccess>74673df2-cff5-4275-aa19-97a33f05a4e1</onsuccess>
+    <resource object="MS Excel VBO" action="Show" />
+  </stage>
+  <stage stageid="5c6a5575-4a29-4d11-a9f7-0935baf2d5a9" name="Select Worksheet" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="255" y="435" w="90" h="30" />
+    <font family="Segoe UI" size="10" style="Bold" color="000000" />
+    <inputs>
+      <input type="number" name="Handle" friendlyname="Handle" expr="[handle]" />
+      <input type="text" name="Workbook" friendlyname="Workbook" expr="[Workbook Name]" />
+      <input type="text" name="Worksheet" friendlyname="Worksheet" expr="&quot;Tabelle1&quot;" />
+      <input type="text" name="Cell Reference" friendlyname="Cell Reference" expr="&quot;A1:&quot;&amp;[last column letter]&amp;[str_last row]" />
+    </inputs>
+    <onsuccess>e88a4a8b-fcae-4004-a0ab-30f8ba91396f</onsuccess>
+    <resource object="MS Excel VBO" action="Select" />
+  </stage>
+  <stage stageid="44454fb0-0fc4-4f76-8dd1-b14dd9437450" name="Collections::Add Row" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="15" y="-90" />
+    <inputs>
+      <input type="text" name="Collection Name" friendlyname="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Coll1&quot;" />
+    </inputs>
+    <onsuccess>fcbd657b-9ff7-4802-a9c8-a522241de437</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Add Row" />
+  </stage>
+  <stage stageid="f5150b26-6101-4f28-a3a4-746c3574ef44" name="Retry?" type="Decision">
+    <display x="15" y="0" />
+    <decision expression="[retry]&lt;[limit]" />
+    <ontrue>55ba6b9a-7709-4264-a7db-cb6ae3673dcc</ontrue>
+    <onfalse>fc26104a-82c9-45ad-8eea-a3fc23bc93ea</onfalse>
+  </stage>
+  <stage stageid="16d33e10-90d1-4716-878c-427c3bda49a8" name="retry" type="Data">
+    <loginhibit onsuccess="true" />
+    <display x="-255" y="-90" />
+    <datatype>number</datatype>
+    <initialvalue>0</initialvalue>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="fb56bf30-e62a-44e8-bc1b-76ed87b3ac1d" name="limit" type="Data">
+    <loginhibit onsuccess="true" />
+    <display x="-180" y="-90" />
+    <datatype>number</datatype>
+    <initialvalue>10</initialvalue>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="55ba6b9a-7709-4264-a7db-cb6ae3673dcc" name="Anchor48" type="Anchor">
+    <loginhibit onsuccess="true" />
+    <display x="90" y="0" w="10" h="10" />
+    <onsuccess>7578306e-46a2-42db-88f3-c68ccb906654</onsuccess>
+  </stage>
+  <stage stageid="7578306e-46a2-42db-88f3-c68ccb906654" name="retry++" type="Calculation">
+    <loginhibit onsuccess="true" />
+    <display x="90" y="-90" />
+    <onsuccess>44454fb0-0fc4-4f76-8dd1-b14dd9437450</onsuccess>
+    <calculation expression="[retry]+1" stage="retry" />
+  </stage>
+  <stage stageid="4e06deba-6545-48dd-ad63-5335d130a9e5" name="Get Column Letter from Number" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="255" y="300" w="90" h="30" />
+    <inputs>
+      <input type="number" name="Input Column Number" friendlyname="Input Column Number" narrative="Column number, that should be converted to letter." expr="[count columns]" />
+    </inputs>
+    <outputs>
+      <output type="text" name="Converted Column Number" friendlyname="Converted Column Number" stage="last column letter" />
+    </outputs>
+    <onsuccess>b7cbf517-2e6f-497f-8736-e448ea93b1e9</onsuccess>
+    <resource object="MS Excel VBO" action="Get Column Letter from Number" />
+  </stage>
+  <stage stageid="bd9b6675-09e5-415c-9ac1-bb0896e7e0ee" name="Collections::Count Columns" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="255" y="255" />
+    <inputs>
+      <input type="text" name="Collection Name" friendlyname="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Coll1&quot;" />
+    </inputs>
+    <outputs>
+      <output type="number" name="Count" friendlyname="Count" narrative="The number of columns counted in the collection" stage="count columns" />
+    </outputs>
+    <onsuccess>4e06deba-6545-48dd-ad63-5335d130a9e5</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Count Columns" />
+  </stage>
+  <stage stageid="97ee6ad9-6224-4164-9ade-b3836451dfca" name="count columns" type="Data">
+    <display x="405" y="255" w="90" h="30" />
+    <datatype>number</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="a4e07cd5-1ea9-4741-9b14-5e6556b7e5ff" name="last column letter" type="Data">
+    <display x="405" y="300" w="90" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="c924bde1-b580-4ac9-9c08-4f12440beb11" name="ToText(last row)" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="255" y="390" w="90" h="30" />
+    <inputs>
+      <input type="number" name="Input Number" friendlyname="Input Number" narrative="The number to format" expr="[last row]" />
+      <input type="text" name="Culture Code" friendlyname="Culture Code" narrative="the culture code" expr="" />
+    </inputs>
+    <outputs>
+      <output type="text" name="Formatted Currency Numbers" friendlyname="Formatted Currency Numbers" narrative="The resulting formatted number" stage="str_last row" />
+    </outputs>
+    <onsuccess>5c6a5575-4a29-4d11-a9f7-0935baf2d5a9</onsuccess>
+    <resource object="Utility - Strings" action="Format Number" />
+  </stage>
+  <stage stageid="b7cbf517-2e6f-497f-8736-e448ea93b1e9" name="Get last row" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="255" y="345" w="90" h="30" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance on which the required cell should be sought. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Workbook Name" friendlyname="Workbook Name" expr="[Workbook Name]" />
+      <input type="text" name="Worksheet Name" friendlyname="Worksheet Name" expr="&quot;Tabelle1&quot;" />
+      <input type="text" name="column" friendlyname="column" expr="&quot;A&quot;" />
+    </inputs>
+    <outputs>
+      <output type="number" name="LastRow" friendlyname="LastRow" stage="last row" />
+    </outputs>
+    <onsuccess>c924bde1-b580-4ac9-9c08-4f12440beb11</onsuccess>
+    <resource object="MS Excel VBO" action="Go to last row" />
+  </stage>
+  <stage stageid="bdcd1f35-5f5c-4e68-848b-c930f2750620" name="This will unwrap only the first row!" type="Block">
+    <loginhibit onsuccess="true" />
+    <display x="-60" y="225" w="165" h="330" />
+    <font family="Segoe UI" size="10" style="Regular" color="FF0000" />
+  </stage>
+  <stage stageid="8ec5ba79-3677-46b9-9698-f323da4bfe5f" name="Create Test Collection" type="Note">
+    <narrative>Create Test Collection</narrative>
+    <display x="15" y="-135" w="120" h="30" />
+    <font family="Segoe UI" size="12" style="Bold" color="0000FF" />
+    <onsuccess>44454fb0-0fc4-4f76-8dd1-b14dd9437450</onsuccess>
+  </stage>
+  <stage stageid="fc26104a-82c9-45ad-8eea-a3fc23bc93ea" name="Write to Excel" type="Note">
+    <narrative>Write to Excel</narrative>
+    <display x="15" y="45" w="120" h="30" />
+    <font family="Segoe UI" size="12" style="Bold" color="0000FF" />
+    <onsuccess>2579d77f-e9ea-4500-bb57-367afb80b593</onsuccess>
+  </stage>
+  <stage stageid="e2744f22-ce6b-453c-ae78-9893b77e66dc" name="This will unwrap whole table" type="Block">
+    <loginhibit onsuccess="true" />
+    <display x="165" y="225" w="180" h="330" />
+    <font family="Segoe UI" size="10" style="Regular" color="00FF00" />
+  </stage>
+  <stage stageid="53ba8031-26a2-4d23-91ae-50f0422f9b8a" name="user" type="Data">
+    <display x="-165" y="435" w="120" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="fd87adf1-c5a2-4868-8f39-b420251d887a" name="Utility - Environment::Get User Name" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="15" y="435" />
+    <outputs>
+      <output type="text" name="User Name" friendlyname="User Name" narrative="The name of the logged in user in the current system" stage="user" />
+    </outputs>
+    <onsuccess>534cab04-9a1f-49b1-8a57-c62cf8dc229e</onsuccess>
+    <resource object="Utility - Environment" action="Get User Name" />
+  </stage>
+  <stage stageid="a4623ebe-968c-4113-bff4-d7f547343e95" name="Set test" type="Calculation">
+    <loginhibit onsuccess="true" />
+    <display x="15" y="600" />
+    <onsuccess>42d304bf-95fd-4761-b87f-871b2e3dfa6e</onsuccess>
+    <calculation expression="&quot;test&quot;" stage="test" />
+  </stage>
+  <stage stageid="ab633541-c2da-43ed-b734-0d8ab4f13a05" name="test" type="Data">
+    <display x="75" y="600" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+</process>
