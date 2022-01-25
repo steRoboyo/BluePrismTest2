@@ -1,11 +1,7 @@
 ﻿<process name="Excel_WriteToExcelWrapText" version="1.0" bpversion="6.10.1.35171" narrative="" byrefcollection="true" preferredid="f26b42f3-7d37-485a-be82-0602399df2e2">
   <view>
     <camerax>0</camerax>
-<<<<<<< HEAD
-    <cameray>675</cameray>
-=======
     <cameray>570</cameray>
->>>>>>> mkallel
     <zoom version="2">1.25</zoom>
   </view>
   <preconditions />
@@ -306,11 +302,7 @@
   <stage stageid="a4623ebe-968c-4113-bff4-d7f547343e95" name="Set test" type="Calculation">
     <loginhibit onsuccess="true" />
     <display x="15" y="600" />
-<<<<<<< HEAD
-    <onsuccess>05394b64-a987-4a3a-ad71-30905e030687</onsuccess>
-=======
     <onsuccess>eb8d1eb0-2dea-4f74-b573-500a40375bc7</onsuccess>
->>>>>>> mkallel
     <calculation expression="&quot;test&quot;" stage="test" />
   </stage>
   <stage stageid="ab633541-c2da-43ed-b734-0d8ab4f13a05" name="test" type="Data">
@@ -320,7 +312,6 @@
     <private />
     <alwaysinit />
   </stage>
-<<<<<<< HEAD
   <stage stageid="05394b64-a987-4a3a-ad71-30905e030687" name="Collections::Count Rows" type="Action">
     <loginhibit onsuccess="true" />
     <display x="15" y="660" />
@@ -339,7 +330,6 @@
     <initialvalue />
     <private />
     <alwaysinit />
-=======
   <stage stageid="eb8d1eb0-2dea-4f74-b573-500a40375bc7" name="1&gt;0" type="Decision">
     <display x="15" y="645" />
     <decision expression="1&gt;0" />
@@ -365,6 +355,5 @@
     <loginhibit onsuccess="true" />
     <display x="-60" y="705" w="10" h="10" />
     <onsuccess>42d304bf-95fd-4761-b87f-871b2e3dfa6e</onsuccess>
->>>>>>> mkallel
   </stage>
 </process>
